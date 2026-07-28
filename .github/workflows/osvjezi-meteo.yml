@@ -1,4 +1,4 @@
-name: Osvezi meteo podatke 2
+name: Osvezi meteo podatke
 
 on:
   schedule:
@@ -6,23 +6,23 @@ on:
         workflow_dispatch:
 
         jobs:
-          update-data:
+          run-sync:
               runs-on: ubuntu-latest
-
                   steps:
-                      - name: Checkout repository
-                            uses: actions/checkout@v4
+                        - name: Checkout repo
+                                uses: actions/checkout@v4
 
-                                - name: Preuzmi podatke sa RHMZ
-                                      run: |
-                                              curl -s -u "gost:gost" "ftp://81.93.72.19/gost/MeteoMapa.json" -o MeteoMapa.json
-                                                      curl -s -u "gost:gost" "ftp://81.93.72.19/gost/RHMZmeteoautomatskestanice.json" -o RHMZmeteoautomatskestanice.json
+                                      - name: Preuzmi podatke
+                                              run: |
+                                                        curl -s -u "gost:gost" "ftp://81.93.72.19/gost/MeteoMapa.json" -o MeteoMapa.json
+                                                                  curl -s -u "gost:gost" "ftp://81.93.72.19/gost/RHMZmeteoautomatskestanice.json" -o RHMZmeteoautomatskestanice.json
 
-                                                          - name: Prebaci fajlove na Loopia hosting
-                                                                uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-                                                                      with:
-                                                                              server: ftpcluster.loopia.se
-                                                                                      username: vreme-rs.rs
-                                                                                              password: xx6t2KA9deCv
-                                                                                                      local-dir: ./
-                                                                                                              server-dir: /public_html/
+                                                                        - name: Upload na Loopiju
+                                                                                uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+                                                                                        with:
+                                                                                                  server: ftpcluster.loopia.se
+                                                                                                            username: vreme-rs.rs
+                                                                                                                      password: ${{ secrets.LOOPIA_FTP_PASSWORD }}
+                                                                                                                                local-dir: ./
+                                                                                                                                          server-dir: /public_html/
+                                                                                                                                          
