@@ -1,4 +1,4 @@
-name: Osvezi meteo podatke
+name: Osvezi meteo podatke 2
 
 on:
   schedule:
@@ -25,4 +25,3 @@ on:
                                                                                                                       password: ${{ secrets.LOOPIA_FTP_PASSWORD }}
                                                                                                                                 local-dir: ./
                                                                                                                                           server-dir: /public_html/
-                                                                                                                                          
