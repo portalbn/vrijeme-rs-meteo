@@ -15,11 +15,11 @@ jobs:
 
       - name: Preuzmi RHMZ podatke
         run: |
-              curl --fail --retry 3 --ssl-reqd --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -o RHMZmeteoautomatskestanice.json "ftp://81.93.72.19/gost/RHMZmeteoautomatskestanice.json"
+              curl --fail --retry 3 --insecure --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -o RHMZmeteoautomatskestanice.json "ftp://81.93.72.19/gost/RHMZmeteoautomatskestanice.json"
 
       - name: Preuzmi MeteoMapa
         run: |
-                  curl --fail --retry 3 --ssl-reqd --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -o MeteoMapa.json "ftp://81.93.72.19/gost/MeteoMapa.json"
+                  curl --fail --retry 3 --incesure --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" -o MeteoMapa.json "ftp://81.93.72.19/gost/MeteoMapa.json"
 
       - name: Sacuvaj promjene
         run: |
