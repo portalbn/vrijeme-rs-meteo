@@ -1,4 +1,4 @@
-name: Osvezi meteo podatke
+name: Osvezi meteo podatke 2
 
 on:
   schedule:
